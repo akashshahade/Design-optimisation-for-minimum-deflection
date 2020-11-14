@@ -1,0 +1,162 @@
+fprintf('Problem statement - \n');
+fprintf('Design of Shaft for minimum deflection.\n');
+fprintf('\n<strong>NOTE</strong> - PLEASE ENTER INPUT IN S.I. UNITS.\n');
+
+fprintf('\n\n<strong>**Materials available in Library**</strong>\n');
+fprintf('-------------------------------\n');
+fprintf('1. SAE 1045\n');
+fprintf('2. SAE 1018\n');
+fprintf('3. C40\n');
+fprintf('4. Al 6061\n');
+fprintf('5. EN24 / AISI 4340\n');
+fprintf('6. SAE 1030\n');
+fprintf('7. SAE 3240\n');
+fprintf('8. ASTM A29\n');
+fprintf('9. Ti6Al7Nb\n\n');
+fprintf('-------------------------------\n');
+
+
+fprintf('<strong>Input -</strong> \n')
+F = input('Enter the load acting (N):\n');
+Fs = input('Enter required factor of safety:\n');
+dmin = input('Enter Minimum required diameter (m):\n');
+dmax = input('Enter Maximum required diameter (m):\n');
+L = input('Enter length of shaft (m):\n');
+fprintf('\n-------------------------------\n');
+
+
+
+% Compatibility test
+
+%material 1
+Syt1 = 310*10^6; 
+d1 = (((32*F*L*Fs)/(pi))^(1/3))*(1/Syt1)^(1/3) ;
+if dmin < d1 && d1 < dmax
+    fprintf('SAE 1045 is compatible.\n');
+else 
+    fprintf('SAE 1045 is not compatible.\n');
+end
+%material 2
+Syt2 = 370*10^6; 
+d2 = (((32*F*L*Fs)/(pi))^(1/3))*(1/Syt2)^(1/3) ;
+if dmin < d2 && d2 < dmax
+    fprintf('SAE 1018 is compatible.\n');
+else 
+    fprintf('SAE 1018 is not compatible.\n');
+end
+%material 3
+Syt3 = 210*10^6; 
+d3 = (((32*F*L*Fs)/(pi))^(1/3))*(1/Syt3)^(1/3) ;
+if dmin < d3 && d3 < dmax
+    fprintf('C40 is compatible.\n');
+else 
+    fprintf('C40 is not compatible.\n');
+end
+%material 4
+Syt4 = 276*10^6; 
+d4 = (((32*F*L*Fs)/(pi))^(1/3))*(1/Syt4)^(1/3) ;
+if dmin < d4 && d4 < dmax
+    fprintf('Al 6061 is compatible.\n');
+else 
+    fprintf('Al 6061 is not compatible.\n');
+end
+%material 5
+Syt5 = 470*10^6; 
+d5 = (((32*F*L*Fs)/(pi))^(1/3))*(1/Syt5)^(1/3) ;
+if dmin < d5 && d5 < dmax
+    fprintf('EN24 / AISI 4340 is compatible.\n');
+else 
+    fprintf('EN24 / AISI 4340 is not compatible.\n');
+end
+%material 6
+Syt6 = 296*10^6; 
+d6 = (((32*F*L*Fs)/(pi))^(1/3))*(1/Syt6)^(1/3) ;
+if dmin < d6 && d6 < dmax
+    fprintf('SAE 1030 is compatible.\n');
+else 
+    fprintf('SAE 1030 is not compatible.\n');
+end
+%material 7
+Syt7 = 550*10^6; 
+d7 = (((32*F*L*Fs)/(pi))^(1/3))*(1/Syt7)^(1/3) ;
+if dmin < d7 && d7 < dmax
+    fprintf('SAE 3240 is compatible.\n');
+else 
+    fprintf('SAE 3240 is not compatible.\n');
+end
+%material 8
+Syt8 = 630*10^6; 
+d8 = (((32*F*L*Fs)/(pi))^(1/3))*(1/Syt8)^(1/3) ;
+if dmin < d8 && d8 < dmax
+    fprintf('ASTM A29 is compatible.\n');
+else 
+    fprintf('ASTM A29 is not compatible.\n');
+end
+%material 9
+Syt9 = 900*10^6; 
+d9 = (((32*F*L*Fs)/(pi))^(1/3))*(1/Syt9)^(1/3) ;
+if dmin < d9 && d9 < dmax
+    fprintf('Ti6Al7Nb is compatible.\n');
+else 
+    fprintf('Ti6Al7Nb is not compatible.\n\n\n');
+end
+fprintf('-------------------------------\n');
+
+% Material selection
+
+%material1
+E1 = 2*10^11;
+msf1 = 1/(E1*(d1^4));
+
+%material2
+E2 = 2.05*10^11 ;
+msf2 = 1/(E2*(d2^4));
+
+%material3
+E3 = 2*10^11;
+msf3 = 1/(E3*(d3^4));
+
+%material4
+E4 = 0.689*10^11;
+msf4 = 1/(E4*(d4^4));
+
+%material5
+E5 = 1.9*10^11;
+msf5 = 1/(E5*(d5^4));
+
+%material6
+E6 = 2.04*10^11;
+msf6 = 1/(E6*(d6^4));
+
+%material7
+E7 = 2.08*10^11;
+msf7 = 1/(E7*(d7^4));
+
+%material8
+E8 = 2*10^11;
+msf8 = 1/(E8*(d8^4));
+
+%material9
+E9 = 1.1*10^11;
+msf9 = 1/(E9*(d9^4));
+
+
+%Final table-------------------------------
+
+fprintf('\n<strong>--FINAL TABLE--</strong>\n')
+Sr = [1;2;3;4;5;6;7;8;9];
+Material = {'SAE 1045';'SAE 1018';'C40';'Al 6061';'EN24 / AISI 4340';'SAE 1030';'SAE 3240';'ASTM A29';'Ti6Al7Nb'};
+E = [200;205;200;68.9;190;204;208;200;110];
+Syt = [310;370;210;276;470;296;550;630;900];
+Diameter = [d1;d2;d3;d4;d5;d6;d7;d8;d9];
+Compatibility = logical([1;1;1;1;1;1;1;1;1]);
+msf = [msf1;msf2;msf3;msf4;msf5;msf6;msf7;msf8;msf9];
+T = table(Sr,Material,E,Syt,Diameter,Compatibility,msf);
+disp(T);
+[M,I] = min(msf);
+S = Material{I};
+D = Diameter(I);
+fprintf('-------------------------------\n');
+fprintf('<strong> ANSWER- </strong> \n');
+fprintf('The material selected is %s.\n',S);
+fprintf('And diameter is %f.',D);
