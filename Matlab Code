@@ -1,5 +1,4 @@
-clc;
-clear;
+clc;clear;
 fprintf('Problem statement - \n');
 fprintf('Design of Shaft for minimum deflection.\n');
 fprintf('\n<strong>NOTE</strong> - PLEASE ENTER INPUT IN S.I. UNITS.\n');
